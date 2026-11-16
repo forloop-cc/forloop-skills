@@ -8,7 +8,7 @@
     {
       "name": "forloop-skills",
       "description": "Planning-only ForLoop planner: spaces, plans, stories, uploads, iterations, and developer triggers",
-      "version": "0.1.4",
+      "version": "0.1.5",
       "source": "./",
       "author": {
         "name": "ForLoop"

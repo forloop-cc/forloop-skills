@@ -19,14 +19,14 @@ prompt, no lock-in.
 ## See it in action
 
 <p align="center">
-  <a href="https://github.com/forloop-cc/forloop-skills/releases/download/v0.1.4/aivy-actions-demo.mp4">
+  <a href="https://github.com/forloop-cc/forloop-skills/blob/main/docs/media/aivy-actions-demo.mp4">
     <img src="docs/media/aivy-actions-poster.png" alt="Watch the Aivy Actions demo" width="720">
   </a>
 </p>
 
 <p align="center"><em>▶ Click the poster to watch the 20-second Aivy Actions demo (MP4, 3.4 MB).</em></p>
 
-The video is also in the repo at [`docs/media/aivy-actions-demo.mp4`](docs/media/aivy-actions-demo.mp4).
+The video is also in the repo at [`docs/media/aivy-actions-demo.mp4`](docs/media/aivy-actions-demo.mp4) and as a release asset on [v0.1.4](https://github.com/forloop-cc/forloop-skills/releases/tag/v0.1.4).
 
 ## What it does
 
