@@ -132,11 +132,21 @@ bash scripts/test-verify.sh   # verify.sh's own fixture tests
 bash scripts/test-preflight.sh # preflight.sh's own fixture tests
 ```
 
+Full end-to-end run on a fresh machine (Docker):
+
+```bash
+cd e2e && ./run.sh --run       # install CLI + skill, run verify/tests, auth/API checks
+docker exec -it forloop-e2e bash  # with --keep, explore the user environment
+```
+
+See [`e2e/README.md`](e2e/README.md). The optional upload test needs a
+disposable space: `FORLOOP_E2E_SPRINT_ID=<id> ./run.sh --run`.
+
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution gate and rules.
 
 ## Status and limitations
 
-- v0.1.0 — early; skills and commands may change between releases.
+- v0.1.x — early; skills and commands may change between releases.
 - Harness behavioral checklists in
   [`docs/harness-verification.md`](docs/harness-verification.md) are still
   pending. Installation is validated for opencode via `npx skills`; Claude Code
