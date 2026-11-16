@@ -10,24 +10,6 @@ prompt, no lock-in.
 > Verified against `@forloop-cc/forloop-cli` v0.2.17. `scripts/verify.sh` exits
 > non-zero if the docs drift from the CLI.
 
-<p align="center">
-  <img src="docs/images/chat-develop-app.jpg" alt="Chat → AI agent develops → app ready to use" width="820">
-</p>
-
-<p align="center"><em>Chat with your agent → it develops through ForLoop agents → you get a working app.</em></p>
-
-## See it in action
-
-<p align="center">
-  <a href="https://github.com/forloop-cc/forloop-skills/blob/main/docs/media/aivy-actions-demo.mp4">
-    <img src="docs/media/aivy-actions-poster.png" alt="Watch the Aivy Actions demo" width="720">
-  </a>
-</p>
-
-<p align="center"><em>▶ Click the poster to watch the 20-second Aivy Actions demo (MP4, 3.4 MB).</em></p>
-
-The video is also in the repo at [`docs/media/aivy-actions-demo.mp4`](docs/media/aivy-actions-demo.mp4) and as a release asset on [v0.1.4](https://github.com/forloop-cc/forloop-skills/releases/tag/v0.1.4).
-
 ## What it does
 
 | You ask | Your agent |
