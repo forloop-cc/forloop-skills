@@ -146,7 +146,7 @@ else
     ok "org list → JSON array ($(printf '%s' "$ORGS" | jq 'length') org(s))"
   elif grep -qE "401|403" /tmp/orgs.err; then
     API_OK=0
-    skip "API rejected the credential ($(grep -v "^$" /tmp/orgs.err | tail -1)) — provide a fresh token (update ~/.config/forloop/tokens.json or set FORLOOP_E2E_TOKEN)"
+    skip "API rejected the credential ($(grep -v "^$" /tmp/orgs.err | tail -1)) — provide a fresh token; if it is a dev token add FORLOOP_API_URL=https://api.dev.forloop.cc FORLOOP_ALLOW_DEV=true"
   else
     bad "org list failed or returned non-JSON"
     sed -n '1,10p' /tmp/orgs.err >&2
