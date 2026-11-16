@@ -58,7 +58,14 @@ checks)
 npm install -g @forloop-cc/forloop-cli@latest
 ```
 
-2. Authenticate (create a token at
+2. Install `jq` (required for document uploads):
+
+```bash
+brew install jq          # macOS
+sudo apt-get install jq  # Debian/Ubuntu
+```
+
+3. Authenticate (create a token at
    https://forloop.cc/profile?tab=api-tokens with scopes `sprint:read`,
    `sprint:write`, `story:read`, `story:write`, `agent:query`, `profile:read`,
    `organization:read`):
@@ -67,10 +74,30 @@ npm install -g @forloop-cc/forloop-cli@latest
 forloop auth login --api-key floop_xxxxx
 ```
 
-3. Start a session and ask: **"Plan space 14."**
+4. Start a session and ask: **"Plan space 14."**
 
 The session-start skill runs preflight, loads context, and shows you a summary
 before any planning happens.
+
+## Example session
+
+```text
+You:    Plan space 14.
+Agent:  [runs preflight, loads space 14] Active space is #14 "Checkout revamp".
+        It has 6 stories, 2 done. What should this space deliver?
+You:    A new checkout flow with saved cards.
+Agent:  Who uses it — guests, signed-in users, or both?
+You:    Both, but saved cards only for signed-in users.
+Agent:  [captures a knowledge note, uploads it, verifies with `forloop file list`]
+        Requirements captured. Here is the plan draft: objectives, deliverables,
+        acceptance criteria, sizing, and risks.
+You:    Approved.
+Agent:  [uploads the plan, then creates 7 Fibonacci-sized stories with agents assigned]
+        Stories created. Ready to start implementation?
+You:    Start implementation.
+Agent:  [triggers the developer agent, checks status]
+        Developer task RUNNING. I will report progress; I will not write code here.
+```
 
 ## The skills
 
@@ -104,6 +131,21 @@ bash scripts/preflight.sh     # check CLI/auth environment
 bash scripts/test-verify.sh   # verify.sh's own fixture tests
 bash scripts/test-preflight.sh # preflight.sh's own fixture tests
 ```
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the contribution gate and rules.
+
+## Status and limitations
+
+- v0.1.0 — early; skills and commands may change between releases.
+- Harness behavioral checklists in
+  [`docs/harness-verification.md`](docs/harness-verification.md) are still
+  pending. Installation is validated for opencode via `npx skills`; Claude Code
+  and Codex installs are documented but not yet recorded.
+- No CI wiring yet — run `bash scripts/verify.sh` before publishing.
+- `npx skills` installs skill directories only. Skills are self-contained;
+  `references/` and `templates/` live in the GitHub repo.
+- `.html` previews download as `application/octet-stream` — open the downloaded
+  file locally to view it.
 
 ## License
 

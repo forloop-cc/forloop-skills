@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop story creation
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 Prerequisite: an approved plan (see `forloop-plan`). Never create stories before
 the user approves the plan.
 

@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop troubleshooting
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 Never continue silently after an error. Diagnose, remediate, then resume.
 
 ## Exit codes

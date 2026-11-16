@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop plan document
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 Prerequisite: requirements were captured as knowledge notes. If not, use
 `forloop-requirements` first.
 

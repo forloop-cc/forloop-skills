@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop requirements gathering
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 One question at a time. Listen, reflect back, then ask the next. Do not write a
 plan until the answers are specific enough to build acceptance criteria from.
 

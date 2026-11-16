@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop design previews
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 Validate the look before implementation. A preview is a throwaway mockup, not
 production code.
 

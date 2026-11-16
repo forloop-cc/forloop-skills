@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop file upload
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 Every upload follows four phases. Skipping verification is the most common
 failure — never claim an upload succeeded without evidence.
 

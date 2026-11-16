@@ -15,7 +15,6 @@ SKILLS_DIR="$ROOT/skills"
 REF_DIR="$ROOT/references"
 FAILED=0
 
-pass() { echo "ok: $*"; }
 fail() { echo "FAIL: $*" >&2; FAILED=1; }
 
 strip_quotes() {
@@ -92,9 +91,56 @@ fi
 echo "Command keys: $(wc -l < "$KEYS_FILE" | tr -d ' ')  Flags: $(wc -l < "$FLAGS_FILE" | tr -d ' ')"
 echo ""
 
+# ---------- manifest version consistency ----------
+manifest_version() {
+  node -e '
+    const fs = require("fs");
+    const file = process.argv[1];
+    const kind = process.argv[2];
+    const m = JSON.parse(fs.readFileSync(file, "utf8"));
+    let v;
+    if (kind === "marketplace") {
+      const entry = (m.plugins || []).find((p) => p.name === "forloop-skills");
+      if (!entry) { console.error("no forloop-skills plugin entry"); process.exit(1); }
+      v = entry.version;
+    } else {
+      v = m.version;
+    }
+    process.stdout.write(v == null ? "" : String(v));
+  ' "$1" "$2" 2>/dev/null
+}
+
+check_manifest_version() {
+  local file="$1" kind="$2" got
+  if [ ! -f "$file" ]; then
+    fail "$file: missing"
+    return
+  fi
+  if ! got="$(manifest_version "$file" "$kind")"; then
+    fail "$file: could not read version"
+    return
+  fi
+  if [ "$got" != "$PACKAGE_VERSION" ]; then
+    fail "$file: version '$got' does not match .version '$PACKAGE_VERSION'"
+  fi
+}
+
+if [ ! -f "$ROOT/.version" ]; then
+  fail "$ROOT/.version: missing"
+else
+  PACKAGE_VERSION="$(tr -d '[:space:]' < "$ROOT/.version")"
+  if [ -z "$PACKAGE_VERSION" ]; then
+    fail "$ROOT/.version: empty"
+  else
+    check_manifest_version "$ROOT/.claude-plugin/plugin.json" plugin
+    check_manifest_version "$ROOT/.claude-plugin/marketplace.json" marketplace
+    check_manifest_version "$ROOT/.codex-plugin/plugin.json" plugin
+  fi
+fi
+
 # ---------- frontmatter checks ----------
 check_frontmatter() {
-  local f="$1" dir fm open closed name has_name desc has_desc has_license k v
+  local f="$1" dir fm open closed name desc has_desc has_license k v
   dir="$(basename "$(dirname "$f")")"
 
   fm="$(awk '
@@ -134,20 +180,18 @@ check_frontmatter() {
       printf "open\t1\n"
       printf "closed\t%d\n", (closed ? 1 : 0)
       printf "name\t%s\n", name
-      printf "has_name\t%d\n", (name_set ? 1 : 0)
       printf "desc\t%s\n", desc
       printf "has_desc\t%d\n", (desc_set ? 1 : 0)
       printf "has_license\t%d\n", (license_set ? 1 : 0)
     }
   ' "$f")"
 
-  open=0 closed=0 name="" has_name=0 desc="" has_desc=0 has_license=0
+  open=0 closed=0 name="" desc="" has_desc=0 has_license=0
   while IFS=$'\t' read -r k v; do
     case "$k" in
       open) open="$v" ;;
       closed) closed="$v" ;;
       name) name="$v" ;;
-      has_name) has_name="$v" ;;
       desc) desc="$v" ;;
       has_desc) has_desc="$v" ;;
       has_license) has_license="$v" ;;

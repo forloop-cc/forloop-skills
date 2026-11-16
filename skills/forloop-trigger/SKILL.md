@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop developer trigger
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 Implementation happens in ForLoop agents, not in this session. Your job is to
 trigger it, report its state, and keep the user informed.
 
@@ -67,7 +69,7 @@ status change is expected.
 - Blocked story → read the story and comments:
   `forloop story get --id <story-id> --output json --non-interactive`
 - Scope change needed → update stories with
-  `forloop story update --id <n> --status <status>` (see the CLI reference) or
+  `forloop story update --id <n> --status <status>` (see `references/cli-reference.md` in the GitHub repo) or
   create new ones via `forloop-stories`
 - Repeated failures → surface the exact agent messages and ask the user how to
   proceed; do not retry blindly

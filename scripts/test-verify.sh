@@ -24,8 +24,19 @@ check() {
 
 make_repo() {
   local dir="$1"
-  mkdir -p "$dir/skills" "$dir/references" "$dir/scripts"
+  mkdir -p "$dir/skills" "$dir/references" "$dir/scripts" \
+    "$dir/.claude-plugin" "$dir/.codex-plugin"
   cp "$FAKE" "$dir/scripts/fake-cli.js"
+  echo "0.1.0" > "$dir/.version"
+  cat > "$dir/.claude-plugin/plugin.json" <<'EOF'
+{"name":"forloop-skills","version":"0.1.0"}
+EOF
+  cat > "$dir/.claude-plugin/marketplace.json" <<'EOF'
+{"name":"forloop","plugins":[{"name":"forloop-skills","version":"0.1.0","source":"./"}]}
+EOF
+  cat > "$dir/.codex-plugin/plugin.json" <<'EOF'
+{"name":"forloop-skills","version":"0.1.0"}
+EOF
   cat > "$dir/references/cli-reference.md" <<'EOF'
 # CLI Reference
 
@@ -258,6 +269,11 @@ check "large skill file passes" 0 "$(run_verify "$TMP/large")"
 make_repo "$TMP/exitcode4"
 printf '\n| 4 | Quota exceeded |\n' >> "$TMP/exitcode4/references/cli-reference.md"
 check "reintroduced exit code 4 row fails" 1 "$(run_verify "$TMP/exitcode4")"
+
+# Case 16: a manifest version that disagrees with .version fails
+make_repo "$TMP/badmanifest"
+node -e "const fs=require('fs');const p='$TMP/badmanifest/.claude-plugin/marketplace.json';const m=JSON.parse(fs.readFileSync(p,'utf8'));m.plugins[0].version='9.9.9';fs.writeFileSync(p,JSON.stringify(m,null,2)+'\n')"
+check "mismatched manifest version fails" 1 "$(run_verify "$TMP/badmanifest")"
 
 echo ""
 echo "Results: $PASS passed, $FAIL failed"

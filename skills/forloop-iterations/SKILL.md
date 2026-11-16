@@ -10,6 +10,8 @@ metadata:
 
 # ForLoop iterations
 
+Planning only — this skill never writes application code, runs tests, or deploys.
+
 A space can contain multiple iterations. Only one is active (`in_progress`) at a
 time. Stories created with `--type basic-task` auto-link to the active iteration.
 
