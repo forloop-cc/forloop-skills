@@ -1,0 +1,18 @@
+{
+  "name": "forloop-skills",
+  "description": "Planning-only ForLoop planner: spaces, plans, stories, uploads, iterations, and developer triggers",
+  "version": "0.1.0",
+  "author": {
+    "name": "ForLoop"
+  },
+  "homepage": "https://github.com/forloop-cc/forloop-skills",
+  "repository": "https://github.com/forloop-cc/forloop-skills",
+  "license": "MIT",
+  "keywords": [
+    "forloop",
+    "planning",
+    "skills",
+    "stories",
+    "sprints"
+  ]
+}

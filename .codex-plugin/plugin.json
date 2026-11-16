@@ -1,0 +1,38 @@
+{
+  "name": "forloop-skills",
+  "version": "0.1.0",
+  "description": "Planning-only ForLoop planner skills: spaces, plans, stories, uploads, iterations, and developer triggers.",
+  "author": {
+    "name": "ForLoop",
+    "url": "https://github.com/forloop-cc"
+  },
+  "homepage": "https://github.com/forloop-cc/forloop-skills",
+  "repository": "https://github.com/forloop-cc/forloop-skills",
+  "license": "MIT",
+  "keywords": [
+    "forloop",
+    "planning",
+    "skills",
+    "stories",
+    "sprints"
+  ],
+  "skills": "./skills/",
+  "hooks": {},
+  "interface": {
+    "displayName": "ForLoop Skills",
+    "shortDescription": "Plan ForLoop spaces, stories, and uploads with your agent",
+    "longDescription": "Turn your coding agent into a planning-only ForLoop planner: load space context, capture requirements, write plans, create sized stories, upload documents, manage iterations, and trigger the ForLoop developer agent.",
+    "developerName": "ForLoop",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Plan a new ForLoop space for my project.",
+      "Show me the current ForLoop space status."
+    ],
+    "websiteURL": "https://github.com/forloop-cc/forloop-skills"
+  }
+}
