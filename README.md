@@ -1,14 +1,39 @@
 # ForLoop Skills
 
+**[ForLoop](https://forloop.cc)** is the AI development platform where you chat
+with an agent, it plans the work, a team of AI agents builds it, and you get a
+deployed app. This package is the **planner half of that loop** — agent skills
+for **Claude Code, opencode, and Codex**.
+
 Your agent plans like a generic project manager. ForLoop spaces need structured
 plans, sized stories with agent assignments, and verified uploads.
 
-This package turns Claude Code, opencode, or Codex into a planning-only ForLoop
-planner that speaks the real `forloop` CLI. Small, composable skills — no giant
-prompt, no lock-in.
+These skills turn your coding agent into a planning-only ForLoop planner that
+speaks the real `forloop` CLI. Small, composable skills — no giant prompt, no
+lock-in.
 
 > Verified against `@forloop-cc/forloop-cli` v0.2.17. `scripts/verify.sh` exits
 > non-zero if the docs drift from the CLI.
+
+## What is ForLoop?
+
+[ForLoop](https://forloop.cc) runs **Loop Engineering**: Plan → Code → Review →
+Deploy → Learn. You describe what you want in chat; ForLoop turns it into a
+**space** (a run of work) and **stories** (sized tasks), then specialised AI
+agents — Developer, Tester, Devops, Creator — implement, test, and deploy on
+AWS serverless infrastructure while you steer.
+
+```
+You ──chat──▶ Planner (this package) ──stories──▶ ForLoop agents ──▶ working app
+                 plan · estimate · upload           code · test · deploy
+```
+
+- The **planning** happens in your own agent with these skills, using the
+  official [`forloop` CLI](https://www.npmjs.com/package/@forloop-cc/forloop-cli)
+- The **building** happens on [forloop.cc](https://forloop.cc) — agents,
+  spaces, stories, files, and deployments all live there
+- Create an account and get an API token at
+  [forloop.cc/profile?tab=api-tokens](https://forloop.cc/profile?tab=api-tokens)
 
 ## What it does
 
